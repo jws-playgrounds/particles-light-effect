@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ja" style="--pcdw: 1400; --spdw: 375; --bp: 769;" data-overlayscrollbars-initialize>
+<head>
+  <meta name="robots" content="noindex,nofollow">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=aa"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag('js', new Date());
+  gtag('config', 'xxx');
+  </script>
+  <title>particles-light-effect | JWS Playgrounds</title>
+  <link rel="canonical" href="https://www.jws.work/playgrounds/particles-light-effect/">
+  <meta name="description" content="フロントエンドアニメーションの作品集。リアルタイムで動作するデモとコードサンプルを通じて、実装の詳細をご紹介します。">
+  <meta property="og:title" content="particles-light-effect | JWS Playgrounds">
+  <meta property="og:description" content="フロントエンドアニメーションの作品集。リアルタイムで動作するデモとコードサンプルを通じて、実装の詳細をご紹介します。">
+  <meta property="og:url" content="https://www.jws.work/playgrounds/particles-light-effect/">
+  <meta property="og:image" content="/playgrounds/particles-light-effect/assets/images/ogp.webp">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="particles-light-effect | JWS Playgrounds">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="shortcut icon" href="/playgrounds/particles-light-effect/assets/images/favicon.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" media="print" onload="this.media='all';">
+  <link rel="stylesheet" href="/playgrounds/particles-light-effect/assets/css/main.css">
+  <script type="module" src="/playgrounds/particles-light-effect/assets/js/entry.js"></script>
+</head>
+<body class="js-scroll" data-overlayscrollbars-initialize>
+  <div class="l_wrap">
+    <header class="l_header">
+      <div class="l_header_logo"> <a href="https://jws.work/" class="u_flash"> <span class="u_flash_item"> <svg class="c_svg" width="88" height="24" role="img" aria-label="JWS" data-type="vw" style="--pcw:88px;--pch:24px;--spw:65px;--sph:17.5px;">
+              <use href="/playgrounds/particles-light-effect/assets/svg/logo.svg#logo"></use>
+            </svg> </span> </a> </div>
+      <div class="l_header_gh"> <a class="u_flash" href="https://github.com/jws-playgrounds/particles-light-effect" target="_blank" rel="noopener noreferrer"> <span class="u_flash_item"> <svg class="c_svg" width="26" height="26" role="img" aria-label="GitHub" data-type="vw" style="--pcw:26px;--pch:26px;--spw:29px;--sph:29px;">
+              <use href="/playgrounds/particles-light-effect/assets/svg/logo_gh.svg#logo_gh"></use>
+            </svg> </span> </a> </div>
+    </header>
+    <main class="l_main">
+      <div class="bg" data-bg="01">
+        <div class="particles" id="tsparticles1"></div>
+        <div class="particles" id="tsparticles2"></div>
+        <div class="bg_select">
+          <div class="bg_select_img" data-bg="01"></div>
+          <div class="bg_select_img" data-bg="02"></div>
+        </div>
+      </div>
+    </main>
+    <footer class="l_footer">©JWS</footer>
+  </div>
+</body>
+</html>
+<style>
+.bg {
+  width: 100%;
+  height: calc(var(--vph) * 1px);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  transition: 0.3s all ease-in;
+}
+.bg[data-bg='01'] {
+  background-image: url('https://assets.codepen.io/4788040/light.jpg');
+}
+.bg[data-bg='02'] {
+  background-image: url('https://assets.codepen.io/4788040/light2.jpg');
+}
+.particles {
+  position: absolute;
+  width: 100%;
+  height: calc(var(--vph) * 1px);
+  z-index: 2;
+}
+.bg_select {
+  position: absolute;
+  width: 150px;
+  bottom: 5%;
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+  right: 0;
+  left: 0;
+  margin: auto;
+  z-index: 3;
+}
+.bg_select_img {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  cursor: pointer;
+  height: 100%;
+  width: 45%;
+  border: 2px solid #fff;
+  transition: 0.3s all ease-in;
+}
+.bg_select_img:hover {
+  box-shadow: 0px 0px 8px 3px #fff;
+}
+.bg_select_img[data-bg='01'] {
+  background-image: url('https://assets.codepen.io/4788040/light.jpg');
+}
+.bg_select_img[data-bg='02'] {
+  background-image: url('https://assets.codepen.io/4788040/light2.jpg');
+}
+
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-particles@1.12.7/dist/jquery.particles.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.12.7/dist/tsparticles.min.js"></script>
+<script defer>
+var data1 = {
+  detectRetina: true,
+  fpsLimit: 60,
+  interactivity: {
+    detectsOn: 'canvas',
+    events: {
+      onClick: {
+        enable: false,
+        mode: 'repulse',
+      },
+      onDiv: {
+        elementId: 'repulse-div',
+        enable: false,
+        mode: 'repulse',
+      },
+      onHover: {
+        enable: false,
+        mode: 'bubble',
+        parallax: {
+          enable: false,
+          force: 2,
+          smooth: 10,
+        },
+      },
+      resize: true,
+    },
+    modes: {
+      bubble: {
+        distance: 2,
+        duration: 0.3,
+        opacity: 1,
+        size: 1,
+      },
+      connect: {
+        distance: 20,
+        lineLinked: {
+          opacity: 0.5,
+        },
+        radius: 60,
+      },
+      grab: {
+        distance: 20,
+        lineLinked: {
+          opacity: 0.5,
+        },
+      },
+      push: {
+        quantity: 4,
+      },
+      remove: {
+        quantity: 2,
+      },
+      repulse: {
+        distance: 200,
+        duration: 0.4,
+      },
+      slow: {
+        factor: 1,
+        radius: 0,
+      },
+    },
+  },
+  particles: {
+    color: {
+      value: '#fff',
+    },
+    lineLinked: {
+      blink: false,
+      color: {
+        value: '#fff',
+      },
+      consent: false,
+      distance: 500,
+      enable: false,
+      opacity: 0.1,
+      shadow: {
+        blur: 2,
+        color: {
+          value: 'lime',
+        },
+        enable: false,
+      },
+      width: 2,
+    },
+    move: {
+      attract: {
+        enable: false,
+        rotate: {
+          x: 600,
+          y: 1200,
+        },
+      },
+      collisions: false,
+      direction: 'top-right',
+      enable: true,
+      outMode: 'out',
+      random: false,
+      speed: 2,
+      straight: false,
+      trail: {
+        enable: false,
+        length: 10,
+        fillColor: {
+          value: '#000000',
+        },
+      },
+    },
+    number: {
+      density: {
+        enable: true,
+        area: 2000,
+      },
+      limit: 500,
+      value: 200,
+    },
+    opacity: {
+      animation: {
+        enable: true,
+        minimumValue: 0,
+        speed: 1,
+        sync: false,
+      },
+      random: {
+        enable: true,
+        minimumValue: 0,
+      },
+      value: 1,
+    },
+    rotate: {
+      animation: {
+        enable: false,
+        speed: 0,
+        sync: false,
+      },
+      direction: 'clockwise',
+      random: false,
+      value: 0,
+    },
+    shape: {
+      character: {
+        fill: false,
+        font: 'Verdana',
+        style: '',
+        value: '*',
+        weight: '400',
+      },
+      image: {
+        height: 4,
+        replaceColor: true,
+        src: 'https://assets.codepen.io/4788040/dust.png',
+        width: 4,
+      },
+      polygon: {
+        sides: 5,
+      },
+      stroke: {
+        color: {
+          value: '#ff0000',
+        },
+        width: 0,
+      },
+      type: 'image',
+    },
+    size: {
+      animation: {
+        enable: true,
+        minimumValue: 2,
+        speed: 10,
+        sync: false,
+      },
+      random: {
+        enable: true,
+        minimumValue: 2,
+      },
+      value: 4,
+    },
+    shadow: {
+      blur: 0,
+      color: {
+        value: '#000000',
+      },
+      enable: false,
+      offset: {
+        x: 0,
+        y: 0,
+      },
+    },
+  },
+  polygon: {
+    draw: {
+      enable: false,
+      stroke: {
+        color: {
+          value: '#fff',
+        },
+        width: 0.5,
+        opacity: 1,
+      },
+    },
+    enable: false,
+    inline: {
+      arrangement: 'one-per-point',
+    },
+    move: {
+      radius: 10,
+      type: 'path',
+    },
+    scale: 1,
+    type: 'none',
+    url: '',
+  },
+  backgroundMask: {
+    cover: {
+      color: {
+        value: '#fff',
+      },
+      opacity: 1,
+    },
+    enable: false,
+  },
+  pauseOnBlur: false,
+};
+var data2 = {
+  detectRetina: true,
+  fpsLimit: 60,
+  interactivity: {
+    detectsOn: 'canvas',
+    events: {
+      onClick: {
+        enable: false,
+        mode: 'repulse',
+      },
+      onDiv: {
+        elementId: 'repulse-div',
+        enable: false,
+        mode: 'repulse',
+      },
+      onHover: {
+        enable: false,
+        mode: 'bubble',
+        parallax: {
+          enable: false,
+          force: 2,
+          smooth: 10,
+        },
+      },
+      resize: true,
+    },
+    modes: {
+      bubble: {
+        distance: 2,
+        duration: 0.3,
+        opacity: 1,
+        size: 1,
+      },
+      connect: {
+        distance: 20,
+        lineLinked: {
+          opacity: 0.5,
+        },
+        radius: 60,
+      },
+      grab: {
+        distance: 20,
+        lineLinked: {
+          opacity: 0.5,
+        },
+      },
+      push: {
+        quantity: 4,
+      },
+      remove: {
+        quantity: 2,
+      },
+      repulse: {
+        distance: 200,
+        duration: 0.4,
+      },
+      slow: {
+        factor: 1,
+        radius: 0,
+      },
+    },
+  },
+  particles: {
+    color: {
+      value: '#fff',
+    },
+    lineLinked: {
+      blink: false,
+      color: {
+        value: '#fff',
+      },
+      consent: false,
+      distance: 500,
+      enable: false,
+      opacity: 0.8,
+      shadow: {
+        blur: 2,
+        color: {
+          value: 'lime',
+        },
+        enable: false,
+      },
+      width: 2,
+    },
+    move: {
+      attract: {
+        enable: false,
+        rotate: {
+          x: 600,
+          y: 1200,
+        },
+      },
+      collisions: false,
+      direction: 'top-right',
+      enable: true,
+      outMode: 'out',
+      random: false,
+      speed: 1.5,
+      straight: false,
+      trail: {
+        enable: false,
+        length: 10,
+        fillColor: {
+          value: '#000000',
+        },
+      },
+    },
+    number: {
+      density: {
+        enable: true,
+        area: 1000,
+      },
+      limit: 50,
+      value: 20,
+    },
+    opacity: {
+      animation: {
+        enable: true,
+        minimumValue: 0.3,
+        speed: 0.7,
+        sync: false,
+      },
+      random: {
+        enable: true,
+        minimumValue: 0.1,
+      },
+      value: 0.15,
+    },
+    rotate: {
+      animation: {
+        enable: false,
+        speed: 0,
+        sync: false,
+      },
+      direction: 'clockwise',
+      random: false,
+      value: 0,
+    },
+    shape: {
+      character: {
+        fill: false,
+        font: 'Verdana',
+        style: '',
+        value: '*',
+        weight: '400',
+      },
+      image: {
+        height: 178,
+        replaceColor: true,
+        src: 'https://assets.codepen.io/4788040/circle.png',
+        width: 178,
+      },
+      polygon: {
+        sides: 5,
+      },
+      stroke: {
+        color: {
+          value: '#ff0000',
+        },
+        width: 0,
+      },
+      type: 'image',
+    },
+    size: {
+      animation: {
+        enable: false,
+        minimumValue: 12,
+        speed: 10,
+        sync: false,
+      },
+      random: {
+        enable: true,
+        minimumValue: 14,
+      },
+      value: 16,
+    },
+    shadow: {
+      blur: 0,
+      color: {
+        value: '#000000',
+      },
+      enable: false,
+      offset: {
+        x: 0,
+        y: 0,
+      },
+    },
+  },
+  polygon: {
+    draw: {
+      enable: false,
+      stroke: {
+        color: {
+          value: '#fff',
+        },
+        width: 0.5,
+        opacity: 1,
+      },
+    },
+    enable: false,
+    inline: {
+      arrangement: 'one-per-point',
+    },
+    move: {
+      radius: 10,
+      type: 'path',
+    },
+    scale: 1,
+    type: 'none',
+    url: '',
+  },
+  backgroundMask: {
+    cover: {
+      color: {
+        value: '#fff',
+      },
+      opacity: 1,
+    },
+    enable: false,
+  },
+  pauseOnBlur: false,
+};
+$('#tsparticles1').particles().init(data1);
+$('#tsparticles2').particles().init(data2);
+$('.bg_select_img').on('click', function() {
+  var bg = $(this).attr('data-bg');
+  $('.bg').attr('data-bg', bg);
+});
+</script>
